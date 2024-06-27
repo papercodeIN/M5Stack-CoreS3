@@ -1,7 +1,7 @@
 import os, sys, io
 import M5
 from M5 import *
-import hardware
+from hardware import RTC
 
 Hour = None
 Seconds = None
@@ -45,7 +45,7 @@ def setup():
     # Label for day of the week
     # label10 = M5.Widgets.Label("Day", 22, 160, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu24)
 
-    rtc = hardware.RTC()
+    rtc = RTC()
     rtc.timezone('UTC+5:30')
 
 # def format_day_of_week(day_index):
