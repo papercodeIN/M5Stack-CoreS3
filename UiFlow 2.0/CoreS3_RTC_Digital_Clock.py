@@ -1,9 +1,7 @@
 import os, sys, io
 import M5
 from M5 import *
-from hardware import *
-
-
+import hardware
 
 Hour = None
 Seconds = None
@@ -24,30 +22,30 @@ def setup():
     global Hour, Seconds, COL_1, Minute, COL_2, SEP_1, DD, MM, YYYY, SEP_3, SEP_4, SEP_2, rtc #, label0
 
     M5.begin()
-    Widgets.fillScreen(0x222222)
+    M5.Widgets.fillScreen(0x222222)
     
     # Labels for time display
-    Hour = Widgets.Label("00", 17, 9, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu56)
-    Seconds = Widgets.Label("00", 226, 9, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu56)
-    COL_1 = Widgets.Label(":", 93, 9, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu56)
-    Minute = Widgets.Label("00", 121, 9, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu56)
-    COL_2 = Widgets.Label(":", 198, 9, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu56)
+    Hour = M5.Widgets.Label("00", 17, 9, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu56)
+    Seconds = M5.Widgets.Label("00", 226, 9, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu56)
+    COL_1 = M5.Widgets.Label(":", 93, 9, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu56)
+    Minute = M5.Widgets.Label("00", 121, 9, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu56)
+    COL_2 = M5.Widgets.Label(":", 198, 9, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu56)
     
     # Line separators
-    SEP_1 = Widgets.Line(22, 83, 300, 83, 0xffffff)
-    SEP_2 = Widgets.Line(22, 147, 300, 147, 0xffffff)
+    SEP_1 = M5.Widgets.Line(22, 83, 300, 83, 0xffffff)
+    SEP_2 = M5.Widgets.Line(22, 147, 300, 147, 0xffffff)
     
     # Labels for date display
-    DD = Widgets.Label("DD", 74, 103, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu24)
-    MM = Widgets.Label("MM", 129, 103, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu24)
-    YYYY = Widgets.Label("YYYY", 188, 103, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu24)
-    SEP_3 = Widgets.Label("-", 116, 103, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu24)
-    SEP_4 = Widgets.Label("-", 175, 103, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu24)
+    DD = M5.Widgets.Label("DD", 74, 103, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu24)
+    MM = M5.Widgets.Label("MM", 129, 103, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu24)
+    YYYY = M5.Widgets.Label("YYYY", 188, 103, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu24)
+    SEP_3 = M5.Widgets.Label("-", 116, 103, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu24)
+    SEP_4 = M5.Widgets.Label("-", 175, 103, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu24)
 
     # Label for day of the week
-    # label10 = Widgets.Label("Day", 22, 160, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu24)
+    # label10 = M5.Widgets.Label("Day", 22, 160, 1.0, 0xffffff, 0x222222, M5.Widgets.FONTS.DejaVu24)
 
-    rtc = RTC()
+    rtc = hardware.RTC()
     rtc.timezone('UTC+5:30')
 
 # def format_day_of_week(day_index):
