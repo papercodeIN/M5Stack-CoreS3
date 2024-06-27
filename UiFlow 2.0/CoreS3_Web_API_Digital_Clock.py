@@ -16,6 +16,8 @@ def setup():
     M5.begin()
     Widgets.fillScreen(0x222222)
 
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
     wlan.connect('Capgemini_4G', 'MN704116')
 
     label_time = Widgets.Label("Time: --:--:--", 20, 20, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu24)
